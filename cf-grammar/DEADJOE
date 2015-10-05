@@ -1,0 +1,23 @@
+
+*** These modified files were found in JOE when it aborted on Sat Sep 19 10:23:24 2015
+*** JOE was aborted because the terminal closed
+
+*** File 'test.cfg'
+variables: S,A,B
+terminals: a,b
+start: S
+produtions:{
+  S = aAb|
+}
+*** File '(Unnamed)'
+.bashrc
+.bashrc
+.bashrc
+.bashrc
+antlrworks2
+settings
+cfg_types.h
+cfg_loader.h
+oi.txt
+oi.txt
+test.cfg
