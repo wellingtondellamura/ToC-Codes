@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 
 
 FILE *dfa_file;
@@ -30,7 +30,7 @@ void usage(char*);
 automaton load_dfa();
 
 void print_automaton(const automaton);
-int test(const automaton, const char*); 
+int test(const automaton, const char*);
 int delta(const automaton, int, char);
 int test_final(const automaton, int);
 
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
 		return 0;
 	}
 	if (argc >=3){
-		verbose_test = (strcmp(argv[2],"-v")) == 0; 
+		verbose_test = (strcmp(argv[2],"-v")) == 0;
 	}
 	dfa_filename = argv[1];
 	printf("Opening file %s\n", dfa_filename);
@@ -133,15 +133,15 @@ int test_final(const automaton dfa, int state){
 int next_char(){
 	if (dfa_file == NULL){
 		dfa_file = fopen(dfa_filename,"r");
-	}	
+	}
 	if (!retract){
-		int r = getc(dfa_file);	
+		int r = getc(dfa_file);
 		while (r == '\n' || r == '\t' || r == ' '){
 			r = getc(dfa_file);
 		}
 		current = r;
 		if (current == EOF){
-			fclose(dfa_file);	
+			fclose(dfa_file);
 		}
 	}
 	retract = 0;
@@ -153,7 +153,7 @@ int read_int(){
 	int v = 0;
 	int f = 1;
 	while (isdigit(c)){
-		v = v + f * atoi(&c); 
+		v = v + f * atoi(&c);
 		f = f *10;
 		c = next_char();
 	}
@@ -167,8 +167,8 @@ automaton load_dfa(){
 	dfa.finalc = dfa.transitionsc = 0;
 	dfa.final = NULL;
 	dfa.transitions = NULL;
-	while ((c = next_char()) != EOF){		
-		switch(c){			
+	while ((c = next_char()) != EOF){
+		switch(c){
 			case 'i':
 				if (next_char()==':'){
 					dfa.initial = read_int();
@@ -185,9 +185,9 @@ automaton load_dfa(){
 							dfa.final = temp;
 						}
 						dfa.final[dfa.finalc-1] = f;
-					}	
+					}
 				break;
-			case 't':				
+			case 't':
 				if (next_char()==':'){
 					transition t;
 					t.from = read_int();
@@ -211,7 +211,6 @@ automaton load_dfa(){
 				printf("Unexpected character '%c'\n", c);
 				abort();
 	   }
-    }	
+    }
     return dfa;
 }
-
